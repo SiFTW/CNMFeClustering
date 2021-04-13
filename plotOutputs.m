@@ -1,5 +1,7 @@
 function out =  plotOutputs()
 %used to generate figures in Samarasinghe et al.
+% first cnmfe_setup must be run from CNMFE
+% https://github.com/zhoupc/CNMF_E
 
 %this is the output file name
 filename='output';
@@ -11,7 +13,6 @@ correlationType='xcorr'; %xcorr,corr,FCA
 imageName='images.tif';
 
 %the output file from CNMFE
-%https://github.com/zhoupc/CNMF_E
 load('neuronOut M+C RTT (sync) 07-06#3.mat');
 
 %theshold linkage parameter, at which the dendogram is split into clusters.
@@ -435,15 +436,6 @@ saveas(gcf,'clusterLocations.png');
 %by side with their clustered traces.
 %overlayNeuronsOnZStackOrderedByClusters(out.Coor,allRawTracesNormalized',validNeuronIds,imageName,clusters,uniqueColors,out);
 
-
-%Below code counts the number of neurons "S" that are spiking at any given
-%time.  PercentSpikeCorr is the percentage of the total that are spiking.
-M=mean(mySpikes,2);
-Smean=sum(M);
-Si=size(mySpikes,1)
-Avg=((Smean/Si)/0.3)
-S=sum(mySpikes);
-PercentSpikeCorr=S/Si;
 
 %This is to calculate burtsiness by the Schleiss and Smith methodology, M
 %is defined above
